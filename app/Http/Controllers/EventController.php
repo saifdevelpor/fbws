@@ -110,7 +110,7 @@ class EventController extends Controller
 
     public function save(Request $request)
     {
-         if (Auth::user()->role !== 'Admin') {
+         if (Auth::user()->role !== 'admin') {
             return redirect()->back()->with('error', 'Unauthorized: Only Admin can See Event Page.');
         }
 
