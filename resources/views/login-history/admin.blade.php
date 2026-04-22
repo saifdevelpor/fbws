@@ -29,6 +29,85 @@
             : asset('assets/img/avatars/5.png');
     @endphp
 
+    <style>
+        .login-user-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .login-user-card {
+            border: 1px solid #e5edf7;
+            border-radius: 18px;
+            background: linear-gradient(180deg, #ffffff, #f8fbff);
+            box-shadow: 0 10px 30px rgba(15, 23, 42, .06);
+            padding: 16px;
+            height: 100%;
+            transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+        }
+
+        .login-user-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(247, 114, 30, .25);
+            box-shadow: 0 16px 34px rgba(247, 114, 30, .10);
+        }
+
+        .login-user-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .login-user-main {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .login-user-main img {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #dbe5f0;
+        }
+
+        .login-count-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(37, 99, 235, .10);
+            color: #1d4ed8;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .login-user-meta {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .login-meta-box {
+            border: 1px solid #e5edf7;
+            border-radius: 14px;
+            padding: 10px 12px;
+            background: #fff;
+        }
+
+        .login-meta-box small {
+            display: block;
+            color: #64748b;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+    </style>
+
     <div class="card">
         <div class="card-header border-bottom d-flex justify-content-between align-items-center flex-wrap gap-2">
             <div>
@@ -138,56 +217,132 @@
                 <div class="text-muted">Showing current month login history for all users (your own logins are hidden). Select a user above to narrow down.</div>
             @endif
 
-            <div class="table-responsive mt-3">
-                <table class="table table-hover align-middle mb-0" id="myTable1">
-                    <thead class="table-light">
-                        <tr>
-                            <th style="width: 260px;">User</th>
-                            <th style="width: 220px;">Date</th>
-                            <th style="width: 140px;">Time</th>
-                            <th style="width: 180px;">IP</th>
-                            <th>Device</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($histories as $row)
-                            <tr>
-                                @php
-                                    $rowAvatar = $row->user && $row->user->profile_photo
-                                        ? asset($row->user->profile_photo)
-                                        : asset('assets/img/avatars/5.png');
-                                @endphp
-                                <td>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <img src="{{ $rowAvatar }}" alt="User"
-                                            style="width:34px;height:34px;object-fit:cover;border-radius:50%;border:1px solid #e2e8f0;">
-                                        <span class="fw-semibold">{{ $row->user?->name ?? 'Unknown' }}</span>
-                                    </div>
-                                </td>
-                                <td class="fw-semibold login-local-date"
-                                    data-login-at="{{ optional($row->logged_in_at)->toIso8601String() }}">
-                                    {{ optional($row->logged_in_at)->format('d M Y') }}
-                                </td>
-                                <td>
-                                    <span class="login-local-time"
-                                        data-login-at="{{ optional($row->logged_in_at)->toIso8601String() }}">
-                                        {{ optional($row->logged_in_at)?->timezone(config('app.timezone'))->format('h:i A') }}
-                                    </span>
-                                </td>
-                                <td><span class="badge bg-secondary">{{ $row->ip_address ?? '—' }}</span></td>
-                                <td class="text-muted small">
-                                    {{ \Illuminate\Support\Str::limit((string) ($row->user_agent ?? '—'), 120) }}
-                                </td>
-                            </tr>
-                        @empty
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
+            @if ($historySummaries->isEmpty())
+                <div class="alert alert-light border mt-3 mb-0">
+                    No login history found for the selected filters.
+                </div>
+            @else
+                <div class="login-user-grid mt-3">
+                    @foreach ($historySummaries as $index => $summary)
+                        @php
+                            $summaryUser = $summary['user'] ?? null;
+                            $latest = $summary['latest'] ?? null;
+                            $summaryRows = $summary['rows'] ?? collect();
+                            $summaryAvatar = $summaryUser && $summaryUser->profile_photo
+                                ? asset($summaryUser->profile_photo)
+                                : asset('assets/img/avatars/5.png');
+                            $modalId = 'userLoginDetailModal' . $index;
+                        @endphp
 
-            <div class="mt-3">
-                {{ $histories->links() }}
-            </div>
+                        <div class="login-user-card">
+                            <button
+                                type="button"
+                                class="btn p-0 border-0 bg-transparent text-start w-100"
+                                data-bs-toggle="modal"
+                                data-bs-target="#{{ $modalId }}"
+                            >
+                                <div class="login-user-top">
+                                    <div class="login-user-main">
+                                        <img src="{{ $summaryAvatar }}" alt="User">
+                                        <div>
+                                            <div class="fw-bold text-dark">{{ $summaryUser?->name ?? 'Unknown User' }}</div>
+                                            <div class="text-muted small">{{ $summaryUser?->id_card ?: 'ID Card not available' }}</div>
+                                        </div>
+                                    </div>
+
+                                    <span class="login-count-badge">{{ (int) ($summary['login_count'] ?? 0) }} times</span>
+                                </div>
+
+                                <div class="text-muted small">
+                                    Latest login record and total monthly activity summary.
+                                </div>
+
+                                <div class="login-user-meta">
+                                    <div class="login-meta-box">
+                                        <small>Latest Date</small>
+                                        <div class="fw-semibold login-local-date" data-login-at="{{ optional($latest?->logged_in_at)->toIso8601String() }}">
+                                            {{ optional($latest?->logged_in_at)->format('d M Y') ?? '—' }}
+                                        </div>
+                                    </div>
+
+                                    <div class="login-meta-box">
+                                        <small>Latest Time</small>
+                                        <div class="fw-semibold login-local-time" data-login-at="{{ optional($latest?->logged_in_at)->toIso8601String() }}">
+                                            {{ optional($latest?->logged_in_at)?->timezone(config('app.timezone'))->format('h:i A') ?? '—' }}
+                                        </div>
+                                    </div>
+
+                                    <div class="login-meta-box">
+                                        <small>IP Address</small>
+                                        <div class="fw-semibold">{{ $latest?->ip_address ?? '—' }}</div>
+                                    </div>
+
+                                    <div class="login-meta-box">
+                                        <small>Role</small>
+                                        <div class="fw-semibold text-capitalize">{{ $summaryUser?->role ?? 'User' }}</div>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+
+                        <div class="modal fade" id="{{ $modalId }}" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <div class="d-flex align-items-center gap-3">
+                                            <img src="{{ $summaryAvatar }}" alt="User"
+                                                style="width:48px;height:48px;object-fit:cover;border-radius:50%;border:1px solid #dbe5f0;">
+                                            <div>
+                                                <h5 class="modal-title mb-1">{{ $summaryUser?->name ?? 'Unknown User' }}</h5>
+                                                <div class="text-muted small">
+                                                    {{ (int) ($summary['login_count'] ?? 0) }} total logins
+                                                    {{ $summaryUser?->id_card ? ' • ' . $summaryUser->id_card : '' }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover align-middle mb-0">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th style="width:70px;">#</th>
+                                                        <th style="width:180px;">Date</th>
+                                                        <th style="width:140px;">Time</th>
+                                                        <th style="width:170px;">IP</th>
+                                                        <th>Device</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($summaryRows as $loginIndex => $loginRow)
+                                                        <tr>
+                                                            <td class="fw-semibold">{{ $loginIndex + 1 }}</td>
+                                                            <td class="fw-semibold login-local-date" data-login-at="{{ optional($loginRow->logged_in_at)->toIso8601String() }}">
+                                                                {{ optional($loginRow->logged_in_at)->format('d M Y') }}
+                                                            </td>
+                                                            <td>
+                                                                <span class="login-local-time" data-login-at="{{ optional($loginRow->logged_in_at)->toIso8601String() }}">
+                                                                    {{ optional($loginRow->logged_in_at)?->timezone(config('app.timezone'))->format('h:i A') }}
+                                                                </span>
+                                                            </td>
+                                                            <td><span class="badge bg-secondary">{{ $loginRow->ip_address ?? '—' }}</span></td>
+                                                            <td class="text-muted small">
+                                                                {{ \Illuminate\Support\Str::limit((string) ($loginRow->user_agent ?? '—'), 140) }}
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
         </div>
     </div>
 

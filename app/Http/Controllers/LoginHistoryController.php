@@ -71,7 +71,7 @@ class LoginHistoryController extends Controller
             ->get();
 
         // Never show the logged-in admin's own logins here (other admins' logs still show)
-        $baseQuery = LoginHistory::with(['user:id,name,profile_photo'])
+        $baseQuery = LoginHistory::with(['user:id,name,email,id_card,role,profile_photo'])
             ->where('user_id', '!=', $auth->id);
         if ($selectedUser) {
             $baseQuery->where('user_id', $selectedUser->id);
@@ -81,10 +81,27 @@ class LoginHistoryController extends Controller
 
         $histories = $query
             ->orderByDesc('logged_in_at')
-            ->paginate(30)
-            ->withQueryString();
+            ->get();
 
-        return view('login-history.admin', compact('users', 'selectedUser', 'selectedUserId', 'histories', 'month', 'year'));
+        $historySummaries = $histories
+            ->groupBy('user_id')
+            ->map(function ($rows) {
+                $sortedRows = $rows->sortByDesc('logged_in_at')->values();
+                $latest = $sortedRows->first();
+
+                return [
+                    'user' => $latest?->user,
+                    'login_count' => $sortedRows->count(),
+                    'latest' => $latest,
+                    'rows' => $sortedRows,
+                ];
+            })
+            ->sortByDesc(function ($summary) {
+                return optional($summary['latest'])->logged_in_at;
+            })
+            ->values();
+
+        return view('login-history.admin', compact('users', 'selectedUser', 'selectedUserId', 'histories', 'historySummaries', 'month', 'year'));
     }
 
     public function devices(Request $request)
