@@ -37,6 +37,7 @@
         }
 
         .login-user-card {
+            position: relative;
             border: 1px solid #e5edf7;
             border-radius: 18px;
             background: linear-gradient(180deg, #ffffff, #f8fbff);
@@ -44,6 +45,8 @@
             padding: 16px;
             height: 100%;
             transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+            overflow: hidden;
+            cursor: pointer;
         }
 
         .login-user-card:hover {
@@ -64,14 +67,44 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            min-width: 0;
         }
 
         .login-user-main img {
+            flex: 0 0 46px;
             width: 46px;
             height: 46px;
             border-radius: 50%;
             object-fit: cover;
             border: 1px solid #dbe5f0;
+        }
+
+        .login-user-identity {
+            min-width: 0;
+            flex: 1 1 auto;
+        }
+
+        .login-user-identity .user-name,
+        .login-user-identity .user-id-card,
+        .login-user-summary,
+        .login-meta-box,
+        .login-meta-box small,
+        .login-meta-box div,
+        .login-count-badge {
+            white-space: normal !important;
+            word-break: normal !important;
+            overflow-wrap: anywhere;
+            writing-mode: horizontal-tb !important;
+        }
+
+        .login-user-identity .user-name {
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .login-user-identity .user-id-card {
+            font-size: 12px;
+            line-height: 1.4;
         }
 
         .login-count-badge {
@@ -84,6 +117,8 @@
             color: #1d4ed8;
             font-size: 12px;
             font-weight: 800;
+            flex: 0 0 auto;
+            min-width: 78px;
         }
 
         .login-user-meta {
@@ -105,6 +140,40 @@
             color: #64748b;
             margin-bottom: 4px;
             font-weight: 700;
+        }
+
+        .login-user-summary {
+            color: #64748b;
+            font-size: 12px;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            text-align: left;
+        }
+
+        .login-user-card-trigger {
+            display: block;
+            width: 100%;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .login-user-card-trigger:hover,
+        .login-user-card-trigger:focus,
+        .login-user-card-trigger:active {
+            color: inherit;
+            text-decoration: none;
+            outline: none;
+        }
+
+        @media (max-width: 576px) {
+            .login-user-top {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .login-user-meta {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 
@@ -234,26 +303,27 @@
                             $modalId = 'userLoginDetailModal' . $index;
                         @endphp
 
-                        <div class="login-user-card">
-                            <button
-                                type="button"
-                                class="btn p-0 border-0 bg-transparent text-start w-100"
-                                data-bs-toggle="modal"
-                                data-bs-target="#{{ $modalId }}"
-                            >
+                        <div
+                            class="login-user-card"
+                            role="button"
+                            tabindex="0"
+                            data-bs-toggle="modal"
+                            data-bs-target="#{{ $modalId }}"
+                        >
+                            <div class="login-user-card-trigger">
                                 <div class="login-user-top">
                                     <div class="login-user-main">
                                         <img src="{{ $summaryAvatar }}" alt="User">
-                                        <div>
-                                            <div class="fw-bold text-dark">{{ $summaryUser?->name ?? 'Unknown User' }}</div>
-                                            <div class="text-muted small">{{ $summaryUser?->id_card ?: 'ID Card not available' }}</div>
+                                        <div class="login-user-identity">
+                                            <div class="fw-bold text-dark user-name">{{ $summaryUser?->name ?? 'Unknown User' }}</div>
+                                            <div class="text-muted user-id-card">{{ $summaryUser?->id_card ?: 'ID Card not available' }}</div>
                                         </div>
                                     </div>
 
                                     <span class="login-count-badge">{{ (int) ($summary['login_count'] ?? 0) }} times</span>
                                 </div>
 
-                                <div class="text-muted small">
+                                <div class="login-user-summary">
                                     Latest login record and total monthly activity summary.
                                 </div>
 
@@ -282,7 +352,7 @@
                                         <div class="fw-semibold text-capitalize">{{ $summaryUser?->role ?? 'User' }}</div>
                                     </div>
                                 </div>
-                            </button>
+                            </div>
                         </div>
 
                         <div class="modal fade" id="{{ $modalId }}" tabindex="-1" aria-hidden="true">
