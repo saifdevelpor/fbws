@@ -32,13 +32,13 @@
     <div class="site-page-shell">
         <div class="container">
             <section class="site-page-hero text-center text-lg-start">
-                <span class="site-page-hero__eyebrow">My Profile</span>
+                <span class="site-page-hero__eyebrow"><i class="bi bi-person-circle me-1"></i> {{ __('web.my_profile') }}</span>
                 <h1 class="site-page-hero__title">{{ __('profile.profile_details') }}</h1>
                 <p class="site-page-hero__copy">{{ __('profile.profile_subtitle') }}</p>
             </section>
 
             <div class="row g-4">
-                <div class="col-lg-4">
+                <div class="col-12 col-lg-4">
                     <div class="site-content-card">
                         <div class="site-content-card__body text-center">
                             <div class="mx-auto mb-3" style="width: 150px; height: 150px; border-radius: 50%; padding: 6px; background: rgba(27,117,187,.14);">
@@ -60,7 +60,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-12 col-lg-8">
                     <div class="site-panel soft-panel">
                         <div class="site-panel-body">
                             <div class="row g-3">

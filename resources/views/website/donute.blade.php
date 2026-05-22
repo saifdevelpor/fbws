@@ -13,7 +13,7 @@
     <div class="site-page-shell">
         <div class="container">
             <section class="site-page-hero text-center text-lg-start">
-                <span class="site-page-hero__eyebrow">{{ __('donation.breadcrumb_title') }}</span>
+                <span class="site-page-hero__eyebrow"><i class="bi bi-heart me-1"></i> {{ __('web.donation') }}</span>
                 <h1 class="site-page-hero__title" lang="{{ $locale }}" dir="{{ $dir }}">{{ __('donation.members_with_payments') }}</h1>
                 <p class="site-page-hero__copy mt-3" lang="{{ $locale }}" dir="{{ $dir }}">
                     {{ __('payment.hero_text') }}
@@ -48,7 +48,7 @@
                 <div class="site-panel-body">
                     <div class="row g-4 site-grid-stretch">
                         @forelse ($payments as $payment)
-                            <div class="col-md-6 col-lg-4">
+                            <div class="col-6 col-md-6 col-lg-4">
                                 <div class="site-content-card">
                                     <div class="site-content-card__media media-fit">
                                         <img src="{{ $payment->user->profile_photo ? asset($payment->user->profile_photo) : asset('assets/img/avatars/default_profile_imgavif.avif') }}" alt="{{ $payment->user->name }}">
@@ -68,7 +68,7 @@
 
                     @if ($payments->count() > 0)
                         <div class="d-flex justify-content-center mt-5">
-                            {{ $payments->links('pagination::bootstrap-5') }}
+                            {{ $payments->withQueryString()->links('pagination::bootstrap-5') }}
                         </div>
                     @endif
                 </div>

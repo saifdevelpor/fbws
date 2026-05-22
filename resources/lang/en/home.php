@@ -14,6 +14,7 @@ return [
     'leaders_text' => 'Meet the people leading our welfare society.',
 
     'latest_users' => 'Latest Register Users',
+    'latest_users_sub' => 'Showing 4 recently registered members',
     'view_all' => 'View All',
 
     'latest_events' => 'Latest Events',
@@ -21,6 +22,7 @@ return [
     'donate_via' => 'Donate via Bank & Mobile Wallet',
 
     'latest_items' => 'Latest Society Items',
+    'latest_items_sub' => 'Showing 4 latest welfare items',
     'qty' => 'Qty',
 
     'latest_gallery' => 'Latest Society Gallery',

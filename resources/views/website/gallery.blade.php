@@ -13,7 +13,7 @@
     <div class="site-page-shell">
         <div class="container">
             <section class="site-page-hero text-center text-lg-start">
-                <span class="site-page-hero__eyebrow">FBWS Gallery</span>
+                <span class="site-page-hero__eyebrow"><i class="bi bi-images me-1"></i> {{ __('web.gallery') }}</span>
                 <h1 class="site-page-hero__title" lang="{{ $locale }}" dir="{{ $dir }}">{{ __('gallery.page_heading') }}</h1>
                 <p class="site-page-hero__copy" lang="{{ $locale }}" dir="{{ $dir }}">{{ __('gallery.page_heading') }}</p>
             </section>
@@ -23,7 +23,7 @@
                     <div class="row g-4 site-grid-stretch">
                         @forelse ($galleryImages as $img)
                             @php $imgUrl = $img->publicUrl(); @endphp
-                            <div class="col-md-6 col-lg-4">
+                            <div class="col-6 col-md-6 col-lg-4">
                                 <div class="site-content-card">
                                     <div class="site-content-card__media">
                                         @if ($img->isVideo())
@@ -44,7 +44,7 @@
                         @endforelse
                     </div>
                     <div class="d-flex justify-content-center mt-5">
-                        {{ $galleryImages->links('pagination::bootstrap-5') }}
+                        {{ $galleryImages->withQueryString()->links('pagination::bootstrap-5') }}
                     </div>
                 </div>
             </section>

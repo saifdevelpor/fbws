@@ -8,7 +8,7 @@
     <div class="site-page-shell">
         <div class="container">
             <section class="site-page-hero text-center text-lg-start">
-                <span class="site-page-hero__eyebrow">Join FBWS</span>
+                <span class="site-page-hero__eyebrow"><i class="bi bi-person-plus me-1"></i> {{ __('web.become_part') }}</span>
                 <h1 class="site-page-hero__title" lang="ur" dir="rtl">{{ __('part.join_us') }}</h1>
                 <p class="site-page-hero__copy" lang="ur" dir="rtl">{{ __('part.message_ph') }}</p>
             </section>

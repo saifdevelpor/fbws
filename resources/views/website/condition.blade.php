@@ -13,7 +13,7 @@
     <div class="site-page-shell">
         <div class="container">
             <section class="site-page-hero text-center text-lg-start">
-                <span class="site-page-hero__eyebrow">FBWS Rules</span>
+                <span class="site-page-hero__eyebrow"><i class="bi bi-journal-text me-1"></i> {{ __('web.condition') }}</span>
                 <h1 class="site-page-hero__title" lang="{{ $locale }}" dir="{{ $dir }}">{{ __('rules.title') }}</h1>
                 <p class="site-page-hero__copy" lang="{{ $locale }}" dir="{{ $dir }}">{{ __('rules.intro') }}</p>
             </section>

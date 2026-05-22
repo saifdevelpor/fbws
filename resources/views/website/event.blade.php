@@ -13,7 +13,7 @@
     <div class="site-page-shell">
         <div class="container">
             <section class="site-page-hero text-center text-lg-start">
-                <span class="site-page-hero__eyebrow">FBWS Events</span>
+                <span class="site-page-hero__eyebrow"><i class="bi bi-calendar-event me-1"></i> {{ __('web.events') }}</span>
                 <h1 class="site-page-hero__title" lang="{{ $locale }}" dir="{{ $dir }}">{{ __('events.page_heading') }}</h1>
                 <p class="site-page-hero__copy" lang="{{ $locale }}" dir="{{ $dir }}">{{ __('events.page_heading') }}</p>
             </section>
@@ -26,7 +26,7 @@
                                 $evMedia = $event->displayMediaItems();
                                 $first = $evMedia->first();
                             @endphp
-                            <div class="col-md-6 col-lg-4">
+                            <div class="col-6 col-md-6 col-lg-4">
                                 <div class="site-content-card">
                                     <div class="site-content-card__media">
                                         @if (!$first)
@@ -51,7 +51,7 @@
 
                     @if ($events->count() > 0)
                         <div class="d-flex justify-content-center mt-5">
-                            {{ $events->links('pagination::bootstrap-5') }}
+                            {{ $events->withQueryString()->links('pagination::bootstrap-5') }}
                         </div>
                     @endif
                 </div>

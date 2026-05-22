@@ -73,10 +73,10 @@
         ];
 
         $healthBars = [
-            ['label' => __('monthly_report.expected_monthly'), 'value' => (float) ($summary['expected_monthly'] ?? 0), 'color' => '#fcb714'],
-            ['label' => __('monthly_report.collected'), 'value' => (float) ($summary['collected_monthly'] ?? 0), 'color' => '#f7721e'],
-            ['label' => __('monthly_report.welfare_income'), 'value' => (float) ($summary['welfare_income'] ?? 0), 'color' => '#0ea5e9'],
-            ['label' => __('monthly_report.welfare_expense'), 'value' => (float) ($summary['welfare_expense'] ?? 0), 'color' => '#ef4444'],
+            ['label' => __('monthly_report.expected_monthly'), 'value' => (float) ($summary['expected_monthly'] ?? 0), 'color' => '#e5a11b'],
+            ['label' => __('monthly_report.collected'), 'value' => (float) ($summary['collected_monthly'] ?? 0), 'color' => '#0b6e62'],
+            ['label' => __('monthly_report.welfare_income'), 'value' => (float) ($summary['welfare_income'] ?? 0), 'color' => '#14a394'],
+            ['label' => __('monthly_report.welfare_expense'), 'value' => (float) ($summary['welfare_expense'] ?? 0), 'color' => '#c45c4a'],
         ];
 
         $highlightColumns = [
@@ -207,7 +207,7 @@
             <section class="mb-4">
                 <div class="row g-4 grid-stretch">
                     @foreach ($stats as $stat)
-                        <div class="col-md-6 col-xl-4">
+                        <div class="col-6 col-md-6 col-xl-4">
                             <div class="site-content-card report-stat-card">
                                 <div class="site-content-card__body">
                                     <div class="report-stat-top">
@@ -240,7 +240,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-12 col-lg-4">
                             <div class="site-content-card h-100">
                                 <div class="site-content-card__body">
                                     <h3 class="site-section-title mb-2" style="font-size:1.4rem;" lang="{{ $locale }}" dir="{{ $dir }}">{{ $copy['health'] }}</h3>
@@ -272,7 +272,7 @@
                 <div class="site-panel-body">
                     <div class="row g-4">
                         @foreach ($highlightColumns as $column)
-                            <div class="col-lg-4">
+                            <div class="col-12 col-md-6 col-lg-4">
                                 <div class="site-content-card h-100">
                                     <div class="site-content-card__body">
                                         <h3 class="site-section-title mb-2" style="font-size:1.35rem;" lang="{{ $locale }}" dir="{{ $dir }}">{{ $column['title'] }}</h3>
@@ -295,7 +295,7 @@
             <section class="site-panel">
                 <div class="site-panel-body">
                     <div class="row g-4">
-                        <div class="col-lg-4">
+                        <div class="col-12 col-md-6 col-lg-4">
                             <div class="site-content-card h-100">
                                 <div class="site-content-card__body">
                                     <h3 class="site-section-title mb-3" style="font-size:1.25rem;" lang="{{ $locale }}" dir="{{ $dir }}">{{ $copy['recent_payments'] }}</h3>
@@ -312,7 +312,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-12 col-md-6 col-lg-4">
                             <div class="site-content-card h-100">
                                 <div class="site-content-card__body">
                                     <h3 class="site-section-title mb-3" style="font-size:1.25rem;" lang="{{ $locale }}" dir="{{ $dir }}">{{ $copy['recent_orders'] }}</h3>
@@ -329,7 +329,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-12 col-md-6 col-lg-4">
                             <div class="site-content-card h-100">
                                 <div class="site-content-card__body">
                                     <h3 class="site-section-title mb-3" style="font-size:1.25rem;" lang="{{ $locale }}" dir="{{ $dir }}">{{ $copy['support_desk'] }}</h3>

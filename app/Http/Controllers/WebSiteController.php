@@ -28,6 +28,14 @@ class WebSiteController extends Controller
         return User::query()->where('position', '!=', 'Legal Advisor');
     }
 
+    /** Mobile: 8 per page, desktop: 9 (via ?per_page=8|9) */
+    private function websitePerPage(): int
+    {
+        $perPage = (int) request()->query('per_page', 9);
+
+        return in_array($perPage, [8, 9], true) ? $perPage : 9;
+    }
+
     private function publicReportPayload(int $month, int $year): array
     {
         $payments = Payment::query()->whereYear('date', $year)->whereMonth('date', $month);
@@ -127,13 +135,13 @@ class WebSiteController extends Controller
             ->whereIn('position', ['President', 'Gernal Secretary', 'Finance Secretary', 'Legal Advisor'])
             ->orderByRaw("FIELD(position, 'President', 'Gernal Secretary', 'Finance Secretary', 'Legal Advisor')")
             ->get();
-        $latestItems = Item::latest()->take(3)->get();
+        $latestItems = Item::latest()->take(4)->get();
         $latestUsers = $this->websiteMembersQuery()
             ->where('position', 'Member')
             ->latest()
-            ->take(3)
+            ->take(4)
             ->get();
-        $latestEvents = Event::with('media')->latest()->take(3)->get();
+        $latestEvents = Event::with('media')->latest()->take(4)->get();
         $perUserMonthly = 500;
         $totalUsers = $this->websiteMembersQuery()->count();
         $expectedMonthly = $totalUsers * $perUserMonthly;
@@ -183,7 +191,7 @@ class WebSiteController extends Controller
     public function item()
     {
 
-        $latestItems = Item::latest()->paginate(9);
+        $latestItems = Item::latest()->paginate($this->websitePerPage());
         return view('website.item', compact('latestItems'));
     }
 
@@ -196,7 +204,7 @@ class WebSiteController extends Controller
     {
         $users = $this->websiteMembersQuery()
             ->latest()
-            ->paginate(9);
+            ->paginate($this->websitePerPage());
 
         return view('website.team', compact('users'));
     }
@@ -210,7 +218,7 @@ class WebSiteController extends Controller
 
     public function social()
     {
-        $events = Event::with('media')->latest()->paginate(6);
+        $events = Event::with('media')->latest()->paginate($this->websitePerPage());
         return view('website.event', compact('events'));
     }
 
@@ -251,7 +259,7 @@ class WebSiteController extends Controller
                 $query->where('position', '!=', 'Legal Advisor');
             })
             ->with('user')
-            ->paginate(9);
+            ->paginate($this->websitePerPage());
 
         return view('website.donute', compact('payments'));
     }
@@ -390,7 +398,7 @@ class WebSiteController extends Controller
 
     public function gallery()
     {
-        $galleryImages = GalleryImage::with('user:id,name,profile_photo')->latest()->paginate(9);
+        $galleryImages = GalleryImage::with('user:id,name,profile_photo')->latest()->paginate($this->websitePerPage());
         return view('website.gallery', compact('galleryImages'));
     }
 

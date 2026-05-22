@@ -10,20 +10,53 @@
         $dir = $locale === 'ur' ? 'rtl' : 'ltr';
     @endphp
 
-    <div class="site-page-shell">
+    <div class="site-page-shell contact-page">
         <div class="container">
             <section class="site-page-hero text-center text-lg-start">
-                <span class="site-page-hero__eyebrow">FBWS Contact</span>
+                <span class="site-page-hero__eyebrow"><i class="bi bi-envelope me-1"></i> {{ __('web.contacts') }}</span>
                 <h1 class="site-page-hero__title" lang="{{ $locale }}" dir="{{ $dir }}">{{ __('contact.breadcrumb_title') }}</h1>
                 <p class="site-page-hero__copy" lang="{{ $locale }}" dir="{{ $dir }}">{{ __('contact.get_in_touch') }}</p>
             </section>
 
             <section class="site-panel mb-4">
                 <div class="site-panel-body">
-                    <div class="row g-4 site-grid-stretch">
-                        <div class="col-md-4"><div class="site-content-card"><div class="site-content-card__body text-center"><div class="mb-3" style="font-size:2rem;color:#1b75bb;"><i class="fa-solid fa-phone"></i></div><h4 class="site-section-title" style="font-size:1.1rem;"><a href="tel:+923012704423">+92 301 2704423</a></h4><p class="site-section-copy mb-0">{{ __('contact.call_anytime') }}</p></div></div></div>
-                        <div class="col-md-4"><div class="site-content-card"><div class="site-content-card__body text-center"><div class="mb-3" style="font-size:2rem;color:#1b75bb;"><i class="fa-solid fa-location-dot"></i></div><h4 class="site-section-title" style="font-size:1.1rem;">{{ __('contact.address_text') }}</h4></div></div></div>
-                        <div class="col-md-4"><div class="site-content-card"><div class="site-content-card__body text-center"><div class="mb-3" style="font-size:2rem;color:#1b75bb;"><i class="fa-solid fa-envelope"></i></div><h4 class="site-section-title" style="font-size:1.1rem;"><a href="mailto:farookabrotherswelfearsociety@gmail.com">farookabrotherswelfearsociety@gmail.com</a></h4><p class="site-section-copy mb-0">{{ __('contact.email_anytime') }}</p></div></div></div>
+                    <div class="row g-4 contact-info-grid">
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div class="site-content-card contact-info-card">
+                                <div class="site-content-card__body text-center">
+                                    <div class="contact-info-card__icon" aria-hidden="true">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                    <p class="contact-info-card__value mb-2">
+                                        <a href="tel:+923012704423" class="contact-info-card__link">+92 301 2704423</a>
+                                    </p>
+                                    <p class="contact-info-card__hint mb-0" lang="{{ $locale }}" dir="{{ $dir }}">{{ __('contact.call_anytime') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div class="site-content-card contact-info-card">
+                                <div class="site-content-card__body text-center">
+                                    <div class="contact-info-card__icon" aria-hidden="true">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                    </div>
+                                    <p class="contact-info-card__value mb-0" lang="{{ $locale }}" dir="{{ $dir }}">{{ __('contact.address_text') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <div class="site-content-card contact-info-card">
+                                <div class="site-content-card__body text-center">
+                                    <div class="contact-info-card__icon" aria-hidden="true">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </div>
+                                    <p class="contact-info-card__value mb-2">
+                                        <a href="mailto:farookabrotherswelfearsociety@gmail.com" class="contact-info-card__link contact-info-card__link--email">farookabrotherswelfearsociety@gmail.com</a>
+                                    </p>
+                                    <p class="contact-info-card__hint mb-0" lang="{{ $locale }}" dir="{{ $dir }}">{{ __('contact.email_anytime') }}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

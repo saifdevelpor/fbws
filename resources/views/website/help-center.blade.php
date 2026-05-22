@@ -13,7 +13,7 @@
     <div class="site-page-shell">
         <div class="container">
             <section class="site-page-hero text-center text-lg-start">
-                <span class="site-page-hero__eyebrow">Help Center</span>
+                <span class="site-page-hero__eyebrow"><i class="bi bi-question-circle me-1"></i> {{ __('web.help_center') }}</span>
                 <h1 class="site-page-hero__title" lang="{{ $locale }}" dir="{{ $dir }}">{{ __('help_center.hero_title') }}</h1>
                 <p class="site-page-hero__copy" lang="{{ $locale }}" dir="{{ $dir }}">{{ __('help_center.hero_intro') }}</p>
             </section>
@@ -21,9 +21,9 @@
             <section class="site-panel mb-4">
                 <div class="site-panel-body">
                     <div class="row g-4 site-grid-stretch">
-                        <div class="col-md-4"><div class="site-content-card"><div class="site-content-card__body"><h5 class="site-section-title" style="font-size:1.1rem;">{{ __('help_center.cat_donations_title') }}</h5><p class="site-section-copy mb-0">{{ __('help_center.cat_donations_desc') }}</p></div></div></div>
-                        <div class="col-md-4"><div class="site-content-card"><div class="site-content-card__body"><h5 class="site-section-title" style="font-size:1.1rem;">{{ __('help_center.cat_membership_title') }}</h5><p class="site-section-copy mb-0">{{ __('help_center.cat_membership_desc') }}</p></div></div></div>
-                        <div class="col-md-4"><div class="site-content-card"><div class="site-content-card__body"><h5 class="site-section-title" style="font-size:1.1rem;">{{ __('help_center.cat_support_title') }}</h5><p class="site-section-copy mb-0">{{ __('help_center.cat_support_desc') }}</p></div></div></div>
+                        <div class="col-6 col-md-4"><div class="site-content-card"><div class="site-content-card__body"><h5 class="site-section-title" style="font-size:1.1rem;">{{ __('help_center.cat_donations_title') }}</h5><p class="site-section-copy mb-0">{{ __('help_center.cat_donations_desc') }}</p></div></div></div>
+                        <div class="col-6 col-md-4"><div class="site-content-card"><div class="site-content-card__body"><h5 class="site-section-title" style="font-size:1.1rem;">{{ __('help_center.cat_membership_title') }}</h5><p class="site-section-copy mb-0">{{ __('help_center.cat_membership_desc') }}</p></div></div></div>
+                        <div class="col-6 col-md-4"><div class="site-content-card"><div class="site-content-card__body"><h5 class="site-section-title" style="font-size:1.1rem;">{{ __('help_center.cat_support_title') }}</h5><p class="site-section-copy mb-0">{{ __('help_center.cat_support_desc') }}</p></div></div></div>
                     </div>
                 </div>
             </section>

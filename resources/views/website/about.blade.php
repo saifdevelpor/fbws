@@ -44,7 +44,7 @@
             width: 0;
             max-width: 100%;
             border-radius: inherit;
-            background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 45%, #f97316 100%);
+            background: linear-gradient(90deg, #e5a11b 0%, #14a394 100%);
             box-shadow: 0 8px 18px rgba(249, 115, 22, .35);
         }
 
@@ -54,10 +54,10 @@
         }
     </style>
 
-    <div class="site-page-shell">
+    <div class="site-page-shell about-page">
         <div class="container">
             <section class="site-page-hero text-center text-lg-start">
-                <span class="site-page-hero__eyebrow">FBWS Story</span>
+                <span class="site-page-hero__eyebrow"><i class="bi bi-building me-1"></i> FBWS</span>
                 <h1 class="site-page-hero__title" lang="{{ $locale }}" dir="{{ $dir }}">{{ __('about.breadcrumb_title') }}</h1>
                 <p class="site-page-hero__copy" lang="{{ $locale }}" dir="{{ $dir }}">{{ __('about.about_para_1') }}</p>
             </section>
@@ -66,10 +66,10 @@
                 <div class="site-panel-body">
                     <div class="row g-4 align-items-center">
                         <div class="col-lg-5">
-                            <div class="site-content-card">
-                                <div class="site-content-card__media media-fit">
-                                    <img src="{{ asset('website/images/6.png') }}" alt="FBWS Logo">
-                                </div>
+                            <div class="about-logo-block">
+                                <span class="about-logo-wrap">
+                                    <img src="{{ asset('website/images/6.png') }}" alt="FBWS Logo" class="about-logo">
+                                </span>
                             </div>
                         </div>
                         <div class="col-lg-7">
@@ -90,7 +90,7 @@
                     </div>
                     <div class="row g-4 site-grid-stretch">
                         @foreach ($missions as $mission)
-                            <div class="col-md-6 col-lg-4">
+                            <div class="col-6 col-md-6 col-lg-4">
                                 <div class="site-content-card">
                                     <div class="site-content-card__body text-center">
                                         <div class="mb-3" style="font-size: 2rem; color: #1b75bb;"><i class="{{ $mission['icon'] }}"></i></div>
@@ -110,10 +110,10 @@
                     <h2 class="site-page-hero__title" lang="{{ $locale }}" dir="{{ $dir }}">{{ __('about.monthly_summary') }}</h2>
                 </div>
                 <div class="row g-4 mt-2 site-grid-stretch">
-                    <div class="col-md-6 col-lg-3"><div class="site-content-card about-summary-card"><div class="site-content-card__body text-center"><h3>{{ $totalUsers }}</h3><p class="mb-0">{{ __('about.total_users') }}</p></div></div></div>
-                    <div class="col-md-6 col-lg-3"><div class="site-content-card about-summary-card"><div class="site-content-card__body text-center"><h3>Rs {{ number_format($perUserMonthly) }}</h3><p class="mb-0">{{ __('about.per_user_monthly') }}</p></div></div></div>
-                    <div class="col-md-6 col-lg-3"><div class="site-content-card about-summary-card"><div class="site-content-card__body text-center"><h3>Rs {{ number_format($expectedMonthly) }}</h3><p class="mb-0">{{ __('about.expected_monthly') }}</p></div></div></div>
-                    <div class="col-md-6 col-lg-3"><div class="site-content-card about-summary-card"><div class="site-content-card__body text-center"><h3>Rs {{ number_format($monthlyCollected) }}</h3><p class="mb-0">{{ __('about.collected_this_month') }}</p></div></div></div>
+                    <div class="col-6 col-md-6 col-lg-3"><div class="site-content-card about-summary-card"><div class="site-content-card__body text-center"><h3>{{ $totalUsers }}</h3><p class="mb-0">{{ __('about.total_users') }}</p></div></div></div>
+                    <div class="col-6 col-md-6 col-lg-3"><div class="site-content-card about-summary-card"><div class="site-content-card__body text-center"><h3>Rs {{ number_format($perUserMonthly) }}</h3><p class="mb-0">{{ __('about.per_user_monthly') }}</p></div></div></div>
+                    <div class="col-6 col-md-6 col-lg-3"><div class="site-content-card about-summary-card"><div class="site-content-card__body text-center"><h3>Rs {{ number_format($expectedMonthly) }}</h3><p class="mb-0">{{ __('about.expected_monthly') }}</p></div></div></div>
+                    <div class="col-6 col-md-6 col-lg-3"><div class="site-content-card about-summary-card"><div class="site-content-card__body text-center"><h3>Rs {{ number_format($monthlyCollected) }}</h3><p class="mb-0">{{ __('about.collected_this_month') }}</p></div></div></div>
                 </div>
                 <div class="about-progress-wrap mt-4">
                     <div class="about-progress-bar">
