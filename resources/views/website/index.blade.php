@@ -179,8 +179,8 @@
                 </div>
                 <div class="row g-4 grid-stretch">
                     <div class="col-6 col-md-6 col-lg-3"><div class="surface-card donation-card text-center"><span class="donation-logo"><img src="{{ asset('website/images/jazzcash.png') }}" alt="JazzCash"></span><span class="donation-label">JazzCash</span><p class="card-copy mb-0">03012704423</p></div></div>
-                    <div class="col-6 col-md-6 col-lg-3"><div class="surface-card donation-card text-center"><span class="donation-logo"><img src="{{ asset('website/images/easypaisa.png') }}" alt="EasyPaisa"></span><span class="donation-label">EasyPaisa</span><p class="card-copy mb-0">03012704423</p></div></div>
-                    <div class="col-6 col-md-6 col-lg-3"><div class="surface-card donation-card text-center"><span class="donation-logo"><img src="{{ asset('website/images/bop.png') }}" alt="BOP"></span><span class="donation-label">BOP</span><p class="card-copy mb-0">6300342619100011</p></div></div>
+                    <div class="col-6 col-md-6 col-lg-3"><div class="surface-card donation-card text-center"><span class="donation-logo"><img src="{{ asset('website/images/Easypaisa.png') }}" alt="EasyPaisa"></span><span class="donation-label">EasyPaisa</span><p class="card-copy mb-0">03012704423</p></div></div>
+                    <div class="col-6 col-md-6 col-lg-3"><div class="surface-card donation-card text-center"><span class="donation-logo"><img src="{{ asset('website/images/BOP.png') }}" alt="BOP"></span><span class="donation-label">BOP</span><p class="card-copy mb-0">6300342619100011</p></div></div>
                     <div class="col-6 col-md-6 col-lg-3"><div class="surface-card donation-card text-center"><span class="donation-logo"><img src="{{ asset('website/images/hbl.png') }}" alt="HBL"></span><span class="donation-label">HBL</span><p class="card-copy mb-0">0017207905946003</p></div></div>
                 </div>
             </div>
