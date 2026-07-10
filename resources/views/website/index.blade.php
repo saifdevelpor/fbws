@@ -17,7 +17,7 @@
                 <div class="hero-banner">
                     <div class="row g-4 align-items-center">
                         <div class="col-lg-7 text-center text-lg-start">
-                            <img src="{{ asset('website/images/6.png') }}" alt="FBWS" class="hero-logo">
+                            <img src="{{ asset('website/images/7.png') }}" alt="FBWS" class="hero-logo">
                             <h1 class="hero-title" lang="{{ $locale }}" dir="{{ $dir }}">{{ __('home.hero_title') }}</h1>
                             <p class="hero-copy mx-auto mx-lg-0" lang="{{ $locale }}" dir="{{ $dir }}">{{ __('home.hero_text') }}</p>
                             <div class="hero-actions justify-content-center justify-content-lg-start">
