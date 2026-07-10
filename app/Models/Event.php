@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Event extends Model
 {
@@ -15,6 +16,13 @@ class Event extends Model
     public function media(): HasMany
     {
         return $this->hasMany(EventMedia::class)->orderBy('sort_order')->orderBy('id');
+    }
+
+    public function createdAuditLog(): MorphOne
+    {
+        return $this->morphOne(AuditLog::class, 'auditable')
+            ->where('event', 'created')
+            ->oldest();
     }
 
     /** Ordered items for public site (DB media rows, or legacy single image). */

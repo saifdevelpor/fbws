@@ -31,6 +31,8 @@ return [
     'no_gallery' => 'No gallery images yet.',
     'view_full_gallery' => 'View Full Gallery',
 
+    'view_payment' => 'View Payment Page',
+
     'monthly_summary' => 'Society Monthly Summary',
     'total_users' => 'Total Users',
     'per_user_monthly' => 'Per User Monthly',

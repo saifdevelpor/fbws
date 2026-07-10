@@ -218,7 +218,7 @@ class WebSiteController extends Controller
 
     public function social()
     {
-        $events = Event::with('media')->latest()->paginate($this->websitePerPage());
+        $events = Event::with(['media', 'createdAuditLog.user:id,name'])->latest()->paginate($this->websitePerPage());
         return view('website.event', compact('events'));
     }
 

@@ -40,7 +40,8 @@
                                     <div class="site-content-card__body text-center">
                                         <h5 class="site-section-title mb-2" style="font-size: 1.2rem;" lang="ur" dir="rtl">{{ $event->name }}</h5>
                                         <p class="site-section-copy mb-2">{{ optional($event->created_at)->format('d M Y') }}</p>
-                                        <p class="site-section-copy mb-0" lang="{{ $locale }}" dir="{{ $dir }}">{{ \Illuminate\Support\Str::limit($event->description, 100) }}</p>
+                                        <p class="site-section-copy mb-2" lang="ur" dir="rtl">{{ \Illuminate\Support\Str::limit($event->description, 100) }}</p>
+                                        <p class="site-section-copy mb-0" lang="ur" dir="rtl"><strong>{{ $event->createdAuditLog?->user?->name ?? 'N/A' }}</strong></p>
                                     </div>
                                 </div>
                             </div>

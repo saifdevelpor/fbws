@@ -30,6 +30,8 @@ return [
     'no_gallery' => 'ابھی تک کوئی تصویر موجود نہیں۔',
     'view_full_gallery' => 'مکمل گیلری دیکھیں',
 
+    'view_payment' => 'پیمنٹ پیج دیکھیں',
+
     'monthly_summary' => 'ماہانہ خلاصہ',
     'total_users' => 'کل صارفین',
     'per_user_monthly' => 'فی صارف ماہانہ',

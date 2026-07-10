@@ -23,8 +23,8 @@
                     <div class="row g-4 site-grid-stretch">
                         @forelse ($galleryImages as $img)
                             @php $imgUrl = $img->publicUrl(); @endphp
-                            <div class="col-6 col-md-6 col-lg-4">
-                                <div class="site-content-card">
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="site-content-card gallery-card">
                                     <div class="site-content-card__media">
                                         @if ($img->isVideo())
                                             <video controls playsinline preload="metadata" src="{{ $imgUrl }}" title="{{ $img->title ?? __('gallery.gallery_image') }}"></video>
@@ -33,9 +33,9 @@
                                         @endif
                                     </div>
                                     <div class="site-content-card__body text-center">
-                                        <h5 class="site-section-title mb-2" style="font-size: 1.2rem;" lang="ur" dir="rtl">{{ $img->title ?? __('gallery.gallery_image') }}</h5>
-                                        <p class="site-section-copy mb-1">{{ $img->created_at?->format('d M, Y') }}</p>
-                                        <p class="site-section-copy mb-0" lang="ur" dir="rtl">{{ $img->user->name ?? __('gallery.unknown_user') }}</p>
+                                        <h5 class="site-section-title gallery-card__title mb-2" lang="ur" dir="rtl">{{ $img->title ?? __('gallery.gallery_image') }}</h5>
+                                        <p class="site-section-copy gallery-card__date mb-2">{{ $img->created_at?->format('d M, Y') }}</p>
+                                        <p class="site-section-copy gallery-card__user mb-0" lang="ur" dir="rtl">{{ $img->user->name ?? __('gallery.unknown_user') }}</p>
                                     </div>
                                 </div>
                             </div>

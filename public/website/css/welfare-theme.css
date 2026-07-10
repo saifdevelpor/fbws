@@ -706,6 +706,30 @@ body {
 .site-content-card__media.media-fit video { object-fit: contain; padding: 12px; }
 .site-content-card__body { padding: 20px; }
 
+.gallery-card .site-content-card__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 210px;
+}
+.gallery-card__title {
+    font-family: "Noto Nastaliq Urdu", "Lateef", serif !important;
+    font-size: clamp(1.15rem, 1.65vw, 1.55rem);
+    line-height: 2.05;
+    margin: 0 0 8px;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+.gallery-card__date {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+.gallery-card__user {
+    font-family: "Noto Nastaliq Urdu", "Lateef", serif !important;
+    font-size: 1.05rem;
+    line-height: 1.9;
+}
+
 .site-empty {
     width: 100%;
     padding: 32px 20px;
@@ -925,6 +949,24 @@ body {
 .landing-home .card-title {
     font-size: 1.1rem; font-weight: 700;
     color: var(--w-ink); margin: 0 0 8px;
+}
+.landing-home .media-card {
+    display: flex;
+    flex-direction: column;
+}
+.landing-home .media-card .card-stack {
+    min-height: 124px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.landing-home .media-card .card-title[lang="ur"] {
+    font-family: "Noto Nastaliq Urdu", "Lateef", serif;
+    font-size: 1.2rem;
+    line-height: 2.15;
+    margin-bottom: 6px;
+    overflow-wrap: anywhere;
+    word-break: normal;
 }
 .landing-home .card-meta, .landing-home .card-copy {
     color: var(--w-muted); font-size: 0.9rem; margin: 0;
