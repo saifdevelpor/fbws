@@ -18,7 +18,7 @@ class GalleryImage extends Model
 
     public function publicUrl(): string
     {
-        return asset('http://localhost/NEWFBWS/storage/app/public/' . ltrim((string) $this->path, '/'));
+        return asset('https://fbws.exlontech.com/storage/app/public/' . ltrim((string) $this->path, '/'));
     }
 
     public function isVideo(): bool
